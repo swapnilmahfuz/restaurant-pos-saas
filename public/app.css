@@ -50,3 +50,43 @@ button {
 button:hover { background: #16362b; }
 :focus-visible { outline: 3px solid #a75d12; outline-offset: 3px; }
 .errors { color: #8f241e; padding-left: 2.25rem; }
+
+[hidden] { display: none !important; }
+.wide-workspace { max-width: 88rem; }
+.pos-nav, .pos-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1.1rem; }
+.pos-nav { padding-block: .5rem; }
+.pos-actions { margin-block: .75rem; }
+.sandbox, #pos-feedback:not(:empty) {
+    padding: .65rem .85rem;
+    border-left: 4px solid #845714;
+    background: #fff5df;
+}
+#counter-cart > fieldset, .pos-operation > fieldset { border: 0; padding: 0; max-width: none; margin: 0; }
+.pos-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(22rem, 4fr); gap: 1rem; }
+.pos-grid section { margin: 0; min-width: 0; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .6rem; }
+.product-grid button {
+    min-height: 4.5rem;
+    text-align: left;
+    background: #edf5ef;
+    color: #183f32;
+    border-color: #9ab5a7;
+    overflow-wrap: anywhere;
+}
+.product-grid button:hover { background: #dcebe0; }
+.cart-row { display: grid; grid-template-columns: 1fr auto; gap: .35rem .6rem; padding-block: .65rem; border-bottom: 1px solid #d8e2dc; }
+.cart-row label { margin: 0; }
+.cart-row .cart-note { grid-column: 1 / -1; }
+.pos-total { font-size: 1.35rem; font-weight: 700; }
+.bill-list { padding-left: 0; list-style: none; }
+.bill-list li { padding: .6rem; border-bottom: 1px solid #cdd8d0; display: flex; justify-content: space-between; gap: .65rem; }
+.bill-totals { display: grid; grid-template-columns: 1fr auto; max-width: 25rem; }
+.bill-totals dd { text-align: right; }
+textarea, select { display: block; max-width: 100%; padding: .45rem; font: inherit; }
+button:disabled { opacity: .55; cursor: default; }
+summary { cursor: pointer; padding-block: .4rem; }
+@media (max-width: 820px) {
+    .pos-grid { grid-template-columns: minmax(0, 1fr); }
+    .bill-list li { display: block; }
+    .bill-list span { display: block; }
+}

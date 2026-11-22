@@ -1,6 +1,6 @@
 # Restaurant POS SaaS — V2
 
-Multi-restaurant, multi-branch, browser-based POS and operations management system. Phase 0.5 adds restaurant and branch approvals, role-based module licensing, isolated demos and trials, and commercial audit history to the Phase 0 foundation. Development is managed through Codex.
+Multi-restaurant, multi-branch, browser-based POS and operations management system. Phase 1 adds menu management, a fast counter POS, and Pay First and Pay Later billing to the commercial SaaS foundation. Development is managed through Codex.
 
 ## Local development
 
@@ -30,6 +30,10 @@ The administrator command prompts for a password in the terminal. Keep the exist
 - In central administration, open **Review pending requests** to approve or reject restaurant registrations and owner branch requests.
 - Open **Module registry** to control platform availability. Grant a module separately at the restaurant and branch level, then assign an eligible role and branch membership to the staff account.
 - Use **Create private trial** for expiring credentials and selected sample-branch modules. Reset and conversion retire the old tenant and create a clean tenant with a new restaurant email.
+
+## Counter POS
+
+After licensing POS at both levels and assigning staff, open a branch and select **POS and billing**. Owners and managers configure the menu. Owners choose billing mode and enabled methods. See the [counter walkthrough and financial rules](docs/phase-1-core-pos.md).
 
 ## Checks
 

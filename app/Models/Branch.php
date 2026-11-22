@@ -10,6 +10,6 @@ class Branch extends Model
 
     protected function casts(): array
     {
-        return ['is_active' => 'boolean'];
+        return ['is_active' => 'boolean', 'pos_payment_methods' => 'array'];
     }
 }
