@@ -1,13 +1,15 @@
 @extends('layout')
 @section('title', 'Central administration')
 @section('content')
+    <p><a href="{{ route('central.modules.index') }}">Module registry</a> · <a href="{{ route('central.trials.new') }}">Create private trial</a></p>
     <section>
-        <h2>Restaurants</h2>
+        <h2>{{ $pending ? 'Pending restaurant and branch requests' : 'Restaurants' }}</h2>
+        <p><a href="{{ route('central.home', $pending ? [] : ['review' => 'pending']) }}">{{ $pending ? 'View all restaurants' : 'Review pending requests' }}</a></p>
         <ul>
             @forelse ($restaurants as $restaurant)
                 <li>
                     <a href="{{ route('central.restaurants.show', $restaurant) }}">{{ $restaurant->name }}</a>
-                    @unless ($restaurant->is_active) (inactive) @endunless
+                    {{ ucfirst($restaurant->approval_status) }} · {{ ucfirst($restaurant->tenant_type) }}
                 </li>
             @empty
                 <li>No restaurants have been created.</li>
