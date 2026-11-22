@@ -2,8 +2,10 @@
 
 use App\Domain\Commercial\ModuleCatalog;
 use App\Http\Controllers\CentralWorkspaceController;
+use App\Http\Controllers\CounterController;
 use App\Http\Controllers\LicensingController;
 use App\Http\Controllers\OnboardingController;
+use App\Http\Controllers\PosManagementController;
 use App\Http\Controllers\SandboxController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StaffWorkspaceController;
@@ -30,6 +32,20 @@ Route::prefix('staff')->name('staff.')->group(function (): void {
         Route::post('branch-requests', [OnboardingController::class, 'requestBranch'])->name('branches.request');
         Route::get('branches/{branch}/modules/{module}', [StaffWorkspaceController::class, 'module'])->name('branches.module');
         Route::get('branches/{branch}', [StaffWorkspaceController::class, 'show'])->name('branches.show');
+        Route::prefix('branches/{branch}/pos')->name('pos.')->group(function (): void {
+            Route::get('/', [CounterController::class, 'index'])->name('counter');
+            Route::get('menu', [CounterController::class, 'menu'])->name('menu');
+            Route::get('history', [CounterController::class, 'history'])->name('history');
+            Route::get('bills/{bill}', [CounterController::class, 'show'])->whereNumber('bill')->name('bill');
+            Route::get('requests/{key}', [CounterController::class, 'status'])->whereUuid('key')->name('status');
+            Route::post('requests', [CounterController::class, 'submit'])->name('submit');
+            Route::get('manage', [PosManagementController::class, 'menu'])->name('manage');
+            Route::post('manage/categories', [PosManagementController::class, 'category'])->name('categories');
+            Route::post('manage/products', [PosManagementController::class, 'product'])->name('products');
+            Route::post('manage/availability', [PosManagementController::class, 'availability'])->name('availability');
+            Route::post('manage/settings', [PosManagementController::class, 'settings'])->name('settings');
+        });
+
     });
 });
 

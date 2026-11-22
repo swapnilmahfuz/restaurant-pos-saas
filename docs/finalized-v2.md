@@ -1,6 +1,6 @@
 # Restaurant ERP SaaS V2
 
-This is the architecture for the locked product rules. [Commercial foundation](phase-0-5-technical-spec.md) describes the approval and entitlement contracts. [Roadmap](roadmap.md) describes delivery order.
+This is the architecture for the locked product rules. [Commercial foundation](phase-0-5-technical-spec.md) describes the approval and entitlement contracts. [Core POS](phase-1-core-pos.md) describes the Phase 1 billing contracts. [Roadmap](roadmap.md) describes delivery order.
 
 ## Tenancy and commercial controls
 

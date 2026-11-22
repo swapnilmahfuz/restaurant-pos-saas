@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Commercial\CommercialAudit;
 use App\Domain\Commercial\ModuleCatalog;
+use App\Domain\Pos\Menu;
 use App\Models\CentralAdmin;
 use App\Models\Restaurant;
 use App\Models\Staff;
@@ -147,6 +148,9 @@ class SandboxController
             $staff->branches()->attach($branch, ['restaurant_id' => $restaurant->id]);
             if ($actor) {
                 CommercialAudit::record('branch.approved', $actor, $restaurant, $branch, ['source' => 'trial']);
+            }
+            if (in_array('pos', $modules, true)) {
+                Menu::sample($restaurant->id, $branch->id);
             }
             foreach (DB::table('erp_modules')->whereIn('code', $modules)->get() as $module) {
                 $keys = ['restaurant_id' => $restaurant->id, 'erp_module_id' => $module->id, 'is_enabled' => true];

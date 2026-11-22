@@ -13,7 +13,8 @@ class BrowserResponseHeaders
         $response = $next($request);
         $response->headers->set('Cache-Control', 'no-store, private');
 
-        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+        $scripts = $request->routeIs('staff.pos.counter', 'staff.pos.bill') ? "'self'" : "'none'";
+        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src {$scripts}; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('Referrer-Policy', 'same-origin');
 

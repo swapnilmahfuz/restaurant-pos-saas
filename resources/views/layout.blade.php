@@ -18,7 +18,7 @@
             @endif
         </nav>
     </header>
-    <main>
+    <main @class(['wide-workspace' => request()->routeIs('staff.pos.counter')])>
         <h1>@yield('title')</h1>
         @if ($errors->any())
             <ul class="errors" role="alert">
