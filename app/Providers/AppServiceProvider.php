@@ -12,6 +12,15 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        RateLimiter::for('registration', fn (Request $request) => [
+            Limit::perHour(5)->by('registration:ip:'.$request->ip()),
+            Limit::perHour(100)->by('registration:global'),
+        ]);
+        RateLimiter::for('public-demo', fn (Request $request) => [
+            Limit::perHour(10)->by('demo:ip:'.$request->ip()),
+            Limit::perHour(150)->by('demo:global'),
+        ]);
+
         foreach (['staff', 'central'] as $guard) {
             RateLimiter::for($guard.'-login', function (Request $request) use ($guard): array {
                 $identity = [$request->input('email'), $guard === 'staff' ? $request->input('restaurant_email') : null];

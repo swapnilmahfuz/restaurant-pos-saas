@@ -15,10 +15,10 @@ class RequireActiveAccount
         $account = Auth::guard($guard)->user();
 
         if ($account instanceof Staff) {
-            $account->load('restaurant');
+            $account->load(['restaurant' => fn ($restaurant) => $restaurant->operational()]);
         }
 
-        if (! $account?->is_active || ($account instanceof Staff && ! $account->restaurant?->is_active)) {
+        if (! $account?->is_active || ($account instanceof Staff && ! $account->restaurant)) {
             Auth::guard($guard)->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();

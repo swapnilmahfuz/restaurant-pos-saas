@@ -19,4 +19,11 @@
     <p><a href="{{ route($central ? 'staff.login' : 'central.login') }}">
         {{ $central ? 'Restaurant staff sign-in' : 'Central administrator sign-in' }}
     </a></p>
+    @unless ($central || auth('central')->check() || auth('staff')->check())
+        <p><a href="{{ route('registration.form') }}">Request restaurant registration</a></p>
+        <form method="POST" action="{{ route('demo.start') }}">
+            @csrf
+            <button type="submit">Open sample demo</button>
+        </form>
+    @endunless
 @endsection

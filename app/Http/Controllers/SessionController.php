@@ -27,7 +27,7 @@ class SessionController
             'is_active' => true,
             fn (Builder $staff) => $staff->whereHas('restaurant', fn (Builder $restaurant) => $restaurant
                 ->where('email', $restaurantEmail)
-                ->where('is_active', true)),
+                ->where('tenant_type', '!=', 'demo')->operational()),
         ]);
     }
 
